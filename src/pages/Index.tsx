@@ -29,15 +29,10 @@ const Index = () => {
   });
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
   const [customServices, setCustomServices] = useState("");
-  const [frequency, setFrequency] = useState("");
 
   const calculatePrice = () => {
     const pricePerMeter = cleaningType === 'regular' ? 160 : cleaningType === 'general' ? 200 : 180;
     let basePrice = area[0] * pricePerMeter;
-
-    const discountPercent = frequency === '3months' ? 5 : frequency === '6months' ? 10 : frequency === '12months' ? 15 : 0;
-    const discount = cleaningType === 'regular' && discountPercent > 0 ? Math.round(basePrice * discountPercent / 100) : 0;
-    basePrice = basePrice - discount;
 
     const extrasPrices: Record<string, number> = {
       windows: 1500,
@@ -91,8 +86,6 @@ const Index = () => {
         calculatePrice={calculatePrice}
         customServices={customServices}
         setCustomServices={setCustomServices}
-        frequency={frequency}
-        setFrequency={setFrequency}
       />
       <BeforeAfterSection />
       <OrderFormSection 

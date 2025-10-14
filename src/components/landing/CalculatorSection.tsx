@@ -137,23 +137,6 @@ const CalculatorSection = ({
                 </Select>
               </div>
 
-              {cleaningType === 'regular' && (
-                <div className="space-y-2">
-                  <Label htmlFor="frequency">Периодичность (скидка на регулярную уборку)</Label>
-                  <Select onValueChange={setFrequency}>
-                    <SelectTrigger id="frequency">
-                      <SelectValue placeholder="Разовая уборка" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="once">Разовая уборка</SelectItem>
-                      <SelectItem value="3months">3 месяца (скидка 5%)</SelectItem>
-                      <SelectItem value="6months">6 месяцев (скидка 10%)</SelectItem>
-                      <SelectItem value="12months">12 месяцев (скидка 15%)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
-
               <div className="space-y-4">
                 <Label>Площадь: {area[0]} м²</Label>
                 <Slider
@@ -273,18 +256,6 @@ const CalculatorSection = ({
                         <span className="text-gray-700">{cleaningType === 'regular' ? 'Регулярная' : cleaningType === 'general' ? 'Генеральная' : 'Базовая'} уборка ({area[0]} м² × {pricePerMeter}₽)</span>
                         <span className="font-semibold">{basePrice}₽</span>
                       </div>
-                      {discount > 0 && (
-                        <div className="flex justify-between items-center text-green-600">
-                          <span>Скидка за периодичность (-{discountPercent}%)</span>
-                          <span className="font-semibold">-{discount}₽</span>
-                        </div>
-                      )}
-                      {discount > 0 && (
-                        <div className="flex justify-between items-center pt-1 border-t border-primary/20">
-                          <span className="text-gray-700">Базовая стоимость со скидкой</span>
-                          <span className="font-semibold">{basePriceWithDiscount}₽</span>
-                        </div>
-                      )}
                       {selectedExtras.length > 0 && (
                         <div className="pt-2 border-t border-primary/20">
                           <p className="text-gray-600 mb-2 font-medium">Дополнительные услуги:</p>
