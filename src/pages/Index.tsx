@@ -100,7 +100,7 @@ const Index = () => {
               { icon: "Shield", title: "Проверенные сотрудники", desc: "Все клинеры проходят строгий отбор" },
               { icon: "Sparkles", title: "Профессиональные средства", desc: "Безопасная химия и оборудование" },
               { icon: "CheckCircle", title: "Гарантия качества", desc: "Переделаем бесплатно при необходимости" },
-              { icon: "Calendar", title: "Уборка по графику", desc: "Регулярное обслуживание в удобное время" },
+              { icon: "Briefcase", title: "Работаем с ЮЛ и ФЛ", desc: "Обслуживаем юридические и физические лица" },
             ].map((item, idx) => (
               <ScrollAnimation key={idx} animation="scale-in" delay={idx * 100}>
                 <Card className="border-none shadow-md hover:shadow-lg transition-all hover:-translate-y-1 h-full">
