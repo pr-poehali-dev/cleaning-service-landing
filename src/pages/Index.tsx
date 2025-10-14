@@ -20,6 +20,11 @@ const Index = () => {
     windows: false,
     balcony: false,
     carpet: false,
+    furniture: false,
+    appliances: false,
+    chandelier: false,
+    afterRepair: false,
+    disinfection: false,
   });
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
 
@@ -29,9 +34,10 @@ const Index = () => {
     if (roomType === "house") basePrice = area[0] * 60;
     if (roomType === "office") basePrice = area[0] * 45;
 
-    if (extras.windows) basePrice += 1500;
-    if (extras.balcony) basePrice += 800;
-    if (extras.carpet) basePrice += 2000;
+    const extrasCount = Object.values(extras).filter(Boolean).length;
+    if (extrasCount > 0) {
+      basePrice += extrasCount * 500;
+    }
 
     setCalculatedPrice(basePrice);
     
