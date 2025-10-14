@@ -10,7 +10,7 @@ const Header = () => {
           <span className="text-2xl font-bold text-gray-900">Чистый Стандарт</span>
         </div>
         <div className="flex items-center gap-3 md:gap-6">
-          <a href="tel:+78001234567" className="text-sm md:text-lg font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 md:gap-2">
+          <a href="tel:+79521301560" className="text-sm md:text-lg font-semibold text-primary hover:text-primary/80 transition-colors flex items-center gap-1 md:gap-2">
             <Icon name="Phone" size={18} className="md:w-5 md:h-5" />
             <span className="whitespace-nowrap">+7 (952) 130-15-60</span>
           </a>

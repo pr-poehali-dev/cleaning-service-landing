@@ -4,7 +4,7 @@ const MessengerWidgets = () => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
       <a
-        href="https://wa.me/78001234567"
+        href="https://wa.me/79521301560"
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center group hover:shadow-xl"
