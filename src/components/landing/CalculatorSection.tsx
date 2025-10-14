@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import Icon from "@/components/ui/icon";
 import ScrollAnimation from "@/components/ScrollAnimation";
 
@@ -34,6 +35,8 @@ interface CalculatorSectionProps {
   }) => void;
   calculatedPrice: number | null;
   calculatePrice: () => void;
+  customServices: string;
+  setCustomServices: (value: string) => void;
 }
 
 const CalculatorSection = ({
@@ -45,6 +48,8 @@ const CalculatorSection = ({
   setExtras,
   calculatedPrice,
   calculatePrice,
+  customServices,
+  setCustomServices,
 }: CalculatorSectionProps) => {
   return (
     <section id="calculator" className="py-20 px-4 bg-white">
@@ -172,6 +177,18 @@ const CalculatorSection = ({
                     </label>
                   </div>
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="custom-services">Другие услуги (опишите своими словами)</Label>
+                <Textarea
+                  id="custom-services"
+                  placeholder="Например: глажка белья, организация гардероба, мытье стен..."
+                  value={customServices}
+                  onChange={(e) => setCustomServices(e.target.value)}
+                  rows={3}
+                  className="resize-none"
+                />
               </div>
 
               {calculatedPrice !== null && (

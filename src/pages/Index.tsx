@@ -27,6 +27,7 @@ const Index = () => {
     disinfection: false,
   });
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
+  const [customServices, setCustomServices] = useState("");
 
   const calculatePrice = () => {
     let basePrice = 0;
@@ -70,6 +71,8 @@ const Index = () => {
         setExtras={setExtras}
         calculatedPrice={calculatedPrice}
         calculatePrice={calculatePrice}
+        customServices={customServices}
+        setCustomServices={setCustomServices}
       />
       <BeforeAfterSection />
       <OrderFormSection calculatedPrice={calculatedPrice} handleSubmit={handleSubmit} />
