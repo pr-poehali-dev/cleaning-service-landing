@@ -16,10 +16,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Контакты</h3>
             <div className="space-y-2 text-sm text-gray-400">
-              <p className="flex items-center gap-2">
-                <Icon name="Phone" size={16} />
-                +7 (800) 123-45-67
-              </p>
+              <p className="flex items-center gap-2">+7 (952) 130-15-60</p>
               <p className="flex items-center gap-2">
                 <Icon name="Mail" size={16} />
                 info@cleanstandard.ru
