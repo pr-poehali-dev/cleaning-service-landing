@@ -16,6 +16,7 @@ const Index = () => {
   const { toast } = useToast();
   const [area, setArea] = useState([50]);
   const [roomType, setRoomType] = useState("");
+  const [cleaningType, setCleaningType] = useState("");
   const [extras, setExtras] = useState({
     windows: false,
     balcony: false,
@@ -30,7 +31,8 @@ const Index = () => {
   const [customServices, setCustomServices] = useState("");
 
   const calculatePrice = () => {
-    let basePrice = area[0] * 180;
+    const pricePerMeter = cleaningType === 'regular' ? 160 : cleaningType === 'general' ? 200 : 180;
+    let basePrice = area[0] * pricePerMeter;
 
     const extrasPrices: Record<string, number> = {
       windows: 1500,
@@ -76,6 +78,8 @@ const Index = () => {
         setArea={setArea}
         roomType={roomType}
         setRoomType={setRoomType}
+        cleaningType={cleaningType}
+        setCleaningType={setCleaningType}
         extras={extras}
         setExtras={setExtras}
         calculatedPrice={calculatedPrice}

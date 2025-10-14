@@ -13,6 +13,8 @@ interface CalculatorSectionProps {
   setArea: (value: number[]) => void;
   roomType: string;
   setRoomType: (value: string) => void;
+  cleaningType: string;
+  setCleaningType: (value: string) => void;
   extras: {
     windows: boolean;
     balcony: boolean;
@@ -45,6 +47,8 @@ const CalculatorSection = ({
   setArea,
   roomType,
   setRoomType,
+  cleaningType,
+  setCleaningType,
   extras,
   setExtras,
   calculatedPrice,
@@ -74,7 +78,8 @@ const CalculatorSection = ({
     disinfection: 'Дезинфекция помещения',
   };
 
-  const basePrice = area[0] * 180;
+  const pricePerMeter = cleaningType === 'regular' ? 160 : cleaningType === 'general' ? 200 : 180;
+  const basePrice = area[0] * pricePerMeter;
   const selectedExtras = Object.entries(extras)
     .filter(([_, value]) => value)
     .map(([key, _]) => ({
@@ -107,6 +112,19 @@ const CalculatorSection = ({
                     <SelectItem value="apartment">Квартира</SelectItem>
                     <SelectItem value="house">Дом</SelectItem>
                     <SelectItem value="office">Офис</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="cleaning-type">Тип уборки</Label>
+                <Select onValueChange={setCleaningType}>
+                  <SelectTrigger id="cleaning-type">
+                    <SelectValue placeholder="Выберите тип уборки" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="regular">Регулярная (160₽/м²)</SelectItem>
+                    <SelectItem value="general">Генеральная (200₽/м²)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -227,7 +245,7 @@ const CalculatorSection = ({
                     <p className="text-sm text-gray-600 mb-3 font-semibold">Детализация расчёта:</p>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700">Базовая уборка ({area[0]} м² × 180₽)</span>
+                        <span className="text-gray-700">{cleaningType === 'regular' ? 'Регулярная' : cleaningType === 'general' ? 'Генеральная' : 'Базовая'} уборка ({area[0]} м² × {pricePerMeter}₽)</span>
                         <span className="font-semibold">{basePrice}₽</span>
                       </div>
                       {selectedExtras.length > 0 && (
@@ -253,12 +271,12 @@ const CalculatorSection = ({
                 </div>
               )}
 
-              <Button onClick={calculatePrice} size="lg" className="w-full text-lg" disabled={!roomType}>
+              <Button onClick={calculatePrice} size="lg" className="w-full text-lg" disabled={!roomType || !cleaningType}>
                 Рассчитать стоимость
               </Button>
               
               <p className="text-xs text-center text-gray-500">
-                * Расчёт 180₽/м². Финальная стоимость может измениться после осмотра
+                * Регулярная: 160₽/м², Генеральная: 200₽/м². Финальная стоимость может измениться после осмотра
               </p>
             </CardContent>
           </Card>
