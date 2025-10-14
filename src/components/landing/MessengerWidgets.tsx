@@ -13,7 +13,7 @@ const MessengerWidgets = () => {
         <Icon name="MessageCircle" size={28} className="group-hover:scale-110 transition-transform" />
       </a>
       <a
-        href="https://t.me/cleanstandard"
+        href="https://t.me/MikhailZHD"
         target="_blank"
         rel="noopener noreferrer"
         className="w-14 h-14 bg-[#0088cc] text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center group hover:shadow-xl"
