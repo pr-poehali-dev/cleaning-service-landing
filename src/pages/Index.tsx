@@ -130,13 +130,13 @@ const Index = () => {
               { icon: "Hammer", title: "Уборка после ремонта", desc: "Устранение строительной пыли", price: "от 5000₽" },
             ].map((service, idx) => (
               <ScrollAnimation key={idx} animation="fade-in" delay={idx * 100}>
-                <Card className="cursor-pointer hover:shadow-xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-primary h-full">
-                  <CardHeader>
+                <Card className="cursor-pointer hover:shadow-xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-primary h-full flex flex-col">
+                  <CardHeader className="flex-grow flex flex-col">
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                       <Icon name={service.icon} size={32} className="text-primary" />
                     </div>
                     <CardTitle>{service.title}</CardTitle>
-                    <CardDescription className="min-h-[48px]">{service.desc}</CardDescription>
+                    <CardDescription className="min-h-[48px] flex-grow">{service.desc}</CardDescription>
                     <p className="text-2xl font-bold text-primary mt-4">{service.price}</p>
                   </CardHeader>
                 </Card>
