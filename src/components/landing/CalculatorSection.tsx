@@ -103,7 +103,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, windows: checked as boolean })}
                     />
                     <label htmlFor="windows" className="text-sm font-medium cursor-pointer">
-                      Мытье окон
+                      Мытье окон (+1500₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -113,7 +113,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, balcony: checked as boolean })}
                     />
                     <label htmlFor="balcony" className="text-sm font-medium cursor-pointer">
-                      Уборка балкона
+                      Уборка балкона (+800₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -123,7 +123,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, carpet: checked as boolean })}
                     />
                     <label htmlFor="carpet" className="text-sm font-medium cursor-pointer">
-                      Химчистка ковра
+                      Химчистка ковра (+2500₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -133,7 +133,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, furniture: checked as boolean })}
                     />
                     <label htmlFor="furniture" className="text-sm font-medium cursor-pointer">
-                      Химчистка мягкой мебели
+                      Химчистка мягкой мебели (+3000₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -143,7 +143,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, appliances: checked as boolean })}
                     />
                     <label htmlFor="appliances" className="text-sm font-medium cursor-pointer">
-                      Мытье бытовой техники
+                      Мытье бытовой техники (+1000₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -153,7 +153,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, chandelier: checked as boolean })}
                     />
                     <label htmlFor="chandelier" className="text-sm font-medium cursor-pointer">
-                      Мытье люстры
+                      Мытье люстры (+1200₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -163,7 +163,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, afterRepair: checked as boolean })}
                     />
                     <label htmlFor="afterRepair" className="text-sm font-medium cursor-pointer">
-                      Уборка после ремонта
+                      Уборка после ремонта (+5000₽)
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -173,7 +173,7 @@ const CalculatorSection = ({
                       onCheckedChange={(checked) => setExtras({ ...extras, disinfection: checked as boolean })}
                     />
                     <label htmlFor="disinfection" className="text-sm font-medium cursor-pointer">
-                      Дезинфекция помещения
+                      Дезинфекция помещения (+2000₽)
                     </label>
                   </div>
                 </div>
