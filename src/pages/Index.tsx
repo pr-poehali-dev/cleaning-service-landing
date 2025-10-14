@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
 import { useToast } from "@/hooks/use-toast";
+import ScrollAnimation from "@/components/ScrollAnimation";
 
 const Index = () => {
   const { toast } = useToast();
@@ -101,13 +102,15 @@ const Index = () => {
               { icon: "CheckCircle", title: "Гарантия качества", desc: "Переделаем бесплатно при необходимости" },
               { icon: "Calendar", title: "Уборка по графику", desc: "Регулярное обслуживание в удобное время" },
             ].map((item, idx) => (
-              <Card key={idx} className="border-none shadow-md hover:shadow-lg transition-all hover:-translate-y-1">
-                <CardHeader>
-                  <Icon name={item.icon} size={40} className="text-primary mb-2" />
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                  <CardDescription>{item.desc}</CardDescription>
-                </CardHeader>
-              </Card>
+              <ScrollAnimation key={idx} animation="scale-in" delay={idx * 100}>
+                <Card className="border-none shadow-md hover:shadow-lg transition-all hover:-translate-y-1">
+                  <CardHeader>
+                    <Icon name={item.icon} size={40} className="text-primary mb-2" />
+                    <CardTitle className="text-lg">{item.title}</CardTitle>
+                    <CardDescription>{item.desc}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -115,8 +118,10 @@ const Index = () => {
 
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-4">Наши услуги</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Выберите подходящий тип уборки</p>
+          <ScrollAnimation animation="fade-in">
+            <h2 className="text-4xl font-bold text-center mb-4">Наши услуги</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Выберите подходящий тип уборки</p>
+          </ScrollAnimation>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: "Home", title: "Генеральная уборка", desc: "Глубокая уборка всех помещений", price: "от 3000₽" },
@@ -124,16 +129,18 @@ const Index = () => {
               { icon: "Wind", title: "Мытье окон", desc: "Профессиональная мойка окон", price: "от 1500₽" },
               { icon: "Hammer", title: "Уборка после ремонта", desc: "Устранение строительной пыли", price: "от 5000₽" },
             ].map((service, idx) => (
-              <Card key={idx} className="cursor-pointer hover:shadow-xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-primary">
-                <CardHeader>
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Icon name={service.icon} size={32} className="text-primary" />
-                  </div>
-                  <CardTitle>{service.title}</CardTitle>
-                  <CardDescription className="min-h-[48px]">{service.desc}</CardDescription>
-                  <p className="text-2xl font-bold text-primary mt-4">{service.price}</p>
-                </CardHeader>
-              </Card>
+              <ScrollAnimation key={idx} animation="fade-in" delay={idx * 100}>
+                <Card className="cursor-pointer hover:shadow-xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-primary h-full">
+                  <CardHeader>
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                      <Icon name={service.icon} size={32} className="text-primary" />
+                    </div>
+                    <CardTitle>{service.title}</CardTitle>
+                    <CardDescription className="min-h-[48px]">{service.desc}</CardDescription>
+                    <p className="text-2xl font-bold text-primary mt-4">{service.price}</p>
+                  </CardHeader>
+                </Card>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -141,8 +148,10 @@ const Index = () => {
 
       <section className="py-20 px-4 bg-gradient-to-b from-blue-50/50 to-white">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Как мы работаем</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Простой процесс от заявки до идеального результата</p>
+          <ScrollAnimation animation="fade-in">
+            <h2 className="text-4xl font-bold text-center mb-4">Как мы работаем</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Простой процесс от заявки до идеального результата</p>
+          </ScrollAnimation>
           <div className="grid md:grid-cols-4 gap-8">
             {[
               { num: "1", icon: "PhoneCall", title: "Заявка", desc: "Оставьте заявку на сайте или позвоните" },
@@ -150,14 +159,16 @@ const Index = () => {
               { num: "3", icon: "Users", title: "Выполнение", desc: "Наши специалисты приедут в удобное время" },
               { num: "4", icon: "Star", title: "Результат", desc: "Наслаждайтесь идеальной чистотой" },
             ].map((step, idx) => (
-              <div key={idx} className="text-center relative">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
-                  {step.num}
+              <ScrollAnimation key={idx} animation="scale-in" delay={idx * 150}>
+                <div className="text-center relative">
+                  <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                    {step.num}
+                  </div>
+                  <Icon name={step.icon} size={32} className="text-primary mx-auto mb-3" />
+                  <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+                  <p className="text-gray-600 text-sm">{step.desc}</p>
                 </div>
-                <Icon name={step.icon} size={32} className="text-primary mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm">{step.desc}</p>
-              </div>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -165,9 +176,12 @@ const Index = () => {
 
       <section id="calculator" className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Калькулятор стоимости</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Рассчитайте примерную стоимость уборки</p>
-          <Card className="shadow-xl border-2">
+          <ScrollAnimation animation="fade-in">
+            <h2 className="text-4xl font-bold text-center mb-4">Калькулятор стоимости</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Рассчитайте примерную стоимость уборки</p>
+          </ScrollAnimation>
+          <ScrollAnimation animation="scale-in">
+            <Card className="shadow-xl border-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Icon name="Calculator" size={24} />
@@ -249,6 +263,7 @@ const Index = () => {
               </Button>
             </CardContent>
           </Card>
+          </ScrollAnimation>
         </div>
       </section>
 
@@ -302,8 +317,10 @@ const Index = () => {
 
       <section className="py-20 px-4 bg-white">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center mb-4">Отзывы клиентов</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Что говорят о нас наши клиенты</p>
+          <ScrollAnimation animation="fade-in">
+            <h2 className="text-4xl font-bold text-center mb-4">Отзывы клиентов</h2>
+            <p className="text-center text-gray-600 mb-12 text-lg">Что говорят о нас наши клиенты</p>
+          </ScrollAnimation>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
@@ -322,17 +339,19 @@ const Index = () => {
                 rating: 5,
               },
             ].map((review, idx) => (
-              <Card key={idx} className="shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="pt-6">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 mb-4 italic">"{review.text}"</p>
-                  <p className="font-semibold text-gray-900">{review.name}</p>
-                </CardContent>
-              </Card>
+              <ScrollAnimation key={idx} animation="fade-in" delay={idx * 100}>
+                <Card className="shadow-md hover:shadow-lg transition-shadow h-full">
+                  <CardContent className="pt-6">
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
+                    <p className="text-gray-600 mb-4 italic">"{review.text}"</p>
+                    <p className="font-semibold text-gray-900">{review.name}</p>
+                  </CardContent>
+                </Card>
+              </ScrollAnimation>
             ))}
           </div>
         </div>
@@ -441,6 +460,27 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a
+          href="https://wa.me/78001234567"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center group hover:shadow-xl"
+          aria-label="WhatsApp"
+        >
+          <Icon name="MessageCircle" size={28} className="group-hover:scale-110 transition-transform" />
+        </a>
+        <a
+          href="https://t.me/cleanstandard"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-14 h-14 bg-[#0088cc] text-white rounded-full shadow-lg hover:scale-110 transition-all flex items-center justify-center group hover:shadow-xl"
+          aria-label="Telegram"
+        >
+          <Icon name="Send" size={28} className="group-hover:scale-110 transition-transform" />
+        </a>
+      </div>
     </div>
   );
 };
