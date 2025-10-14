@@ -17,14 +17,8 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Контакты</h3>
             <div className="space-y-2 text-sm text-gray-400">
               <p className="flex items-center gap-2">+7 (952) 130-15-60</p>
-              <p className="flex items-center gap-2">
-                <Icon name="Mail" size={16} />
-                info@cleanstandard.ru
-              </p>
-              <p className="flex items-center gap-2">
-                <Icon name="MapPin" size={16} />
-                г. Москва, ул. Примерная, 123
-              </p>
+              <p className="flex items-center gap-2"></p>
+              <p className="flex items-center gap-2">г. Екатеринбург</p>
             </div>
           </div>
           <div>
