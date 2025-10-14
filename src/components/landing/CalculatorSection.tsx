@@ -39,8 +39,6 @@ interface CalculatorSectionProps {
   calculatePrice: () => void;
   customServices: string;
   setCustomServices: (value: string) => void;
-  subscription: string;
-  setSubscription: (value: string) => void;
 }
 
 const CalculatorSection = ({
@@ -56,8 +54,6 @@ const CalculatorSection = ({
   calculatePrice,
   customServices,
   setCustomServices,
-  subscription,
-  setSubscription,
 }: CalculatorSectionProps) => {
   const extrasPrices: Record<string, number> = {
     windows: 1500,
@@ -83,37 +79,6 @@ const CalculatorSection = ({
 
   const pricePerMeter = cleaningType === 'regular' ? 160 : cleaningType === 'general' ? 200 : 180;
   const basePrice = area[0] * pricePerMeter;
-  
-  const getSubscriptionDiscount = () => {
-    if (cleaningType !== 'regular' || !subscription || subscription === 'none') return 0;
-    
-    const [frequency, duration] = subscription.split('-');
-    let discount = 0;
-    
-    if (frequency === '1week') discount = 5;
-    else if (frequency === '2week') discount = 10;
-    else if (frequency === '3week') discount = 15;
-    
-    if (duration === '2m') discount += 3;
-    else if (duration === '3m') discount += 5;
-    else if (duration === '6m') discount += 10;
-    else if (duration === '12m') discount += 15;
-    
-    return Math.min(discount, 30);
-  };
-  
-  const discountPercent = getSubscriptionDiscount();
-  const discount = Math.round(basePrice * discountPercent / 100);
-  const basePriceWithDiscount = basePrice - discount;
-  
-  const getCleaningsPerMonth = () => {
-    if (!subscription || subscription === 'none') return 0;
-    const frequency = subscription.split('-')[0];
-    if (frequency === '1week') return 4;
-    if (frequency === '2week') return 8;
-    if (frequency === '3week') return 12;
-    return 0;
-  };
   
   const selectedExtras = Object.entries(extras)
     .filter(([_, value]) => value)
@@ -163,35 +128,6 @@ const CalculatorSection = ({
                   </SelectContent>
                 </Select>
               </div>
-
-              {cleaningType === 'regular' && (
-                <div className="space-y-2">
-                  <Label htmlFor="subscription">Абонемент на регулярную уборку</Label>
-                  <Select onValueChange={setSubscription}>
-                    <SelectTrigger id="subscription">
-                      <SelectValue placeholder="Разовая уборка (без скидки)" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="none">Разовая уборка</SelectItem>
-                      <SelectItem value="1week-1m">1 раз/неделю — 1 месяц (скидка 5%)</SelectItem>
-                      <SelectItem value="1week-2m">1 раз/неделю — 2 месяца (скидка 8%)</SelectItem>
-                      <SelectItem value="1week-3m">1 раз/неделю — 3 месяца (скидка 10%)</SelectItem>
-                      <SelectItem value="1week-6m">1 раз/неделю — 6 месяцев (скидка 15%)</SelectItem>
-                      <SelectItem value="1week-12m">1 раз/неделю — 12 месяцев (скидка 20%)</SelectItem>
-                      <SelectItem value="2week-1m">2 раза/неделю — 1 месяц (скидка 10%)</SelectItem>
-                      <SelectItem value="2week-2m">2 раза/неделю — 2 месяца (скидка 13%)</SelectItem>
-                      <SelectItem value="2week-3m">2 раза/неделю — 3 месяца (скидка 15%)</SelectItem>
-                      <SelectItem value="2week-6m">2 раза/неделю — 6 месяцев (скидка 20%)</SelectItem>
-                      <SelectItem value="2week-12m">2 раза/неделю — 12 месяцев (скидка 25%)</SelectItem>
-                      <SelectItem value="3week-1m">3 раза/неделю — 1 месяц (скидка 15%)</SelectItem>
-                      <SelectItem value="3week-2m">3 раза/неделю — 2 месяца (скидка 18%)</SelectItem>
-                      <SelectItem value="3week-3m">3 раза/неделю — 3 месяца (скидка 20%)</SelectItem>
-                      <SelectItem value="3week-6m">3 раза/неделю — 6 месяцев (скидка 25%)</SelectItem>
-                      <SelectItem value="3week-12m">3 раза/неделю — 12 месяцев (скидка 30%)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              )}
 
               <div className="space-y-4">
                 <Label>Площадь: {area[0]} м²</Label>
@@ -313,20 +249,6 @@ const CalculatorSection = ({
                         <span className="font-semibold">{basePrice}₽</span>
                       </div>
                       
-                      {discount > 0 && (
-                        <div className="flex justify-between items-center text-green-600">
-                          <span>Скидка по абонементу (-{discountPercent}%)</span>
-                          <span className="font-semibold">-{discount}₽</span>
-                        </div>
-                      )}
-                      
-                      {discount > 0 && (
-                        <div className="flex justify-between items-center pt-1 border-t border-primary/20">
-                          <span className="text-gray-700">Стоимость за 1 уборку</span>
-                          <span className="font-semibold">{basePriceWithDiscount}₽</span>
-                        </div>
-                      )}
-                      
                       {selectedExtras.length > 0 && (
                         <div className="pt-2 border-t border-primary/20">
                           <p className="text-gray-600 mb-2 font-medium">Дополнительные услуги:</p>
@@ -338,20 +260,11 @@ const CalculatorSection = ({
                           ))}
                         </div>
                       )}
-                      
-                      {subscription && getCleaningsPerMonth() > 0 && (
-                        <div className="pt-3 border-t-2 border-primary/30 space-y-1">
-                          <div className="flex justify-between items-center text-blue-600">
-                            <span className="font-medium">Уборок в месяц: {getCleaningsPerMonth()}</span>
-                            <span className="font-semibold">{calculatedPrice * getCleaningsPerMonth()}₽/мес</span>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                   <div className="pt-3 border-t-2 border-primary/30">
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-gray-800">{subscription ? 'Стоимость 1 уборки:' : 'Итого:'}</span>
+                      <span className="text-lg font-semibold text-gray-800">Итого:</span>
                       <span className="text-4xl font-bold text-primary">{calculatedPrice}₽</span>
                     </div>
                   </div>
