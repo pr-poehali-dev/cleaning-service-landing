@@ -103,11 +103,11 @@ const Index = () => {
               { icon: "Calendar", title: "Уборка по графику", desc: "Регулярное обслуживание в удобное время" },
             ].map((item, idx) => (
               <ScrollAnimation key={idx} animation="scale-in" delay={idx * 100}>
-                <Card className="border-none shadow-md hover:shadow-lg transition-all hover:-translate-y-1">
-                  <CardHeader>
+                <Card className="border-none shadow-md hover:shadow-lg transition-all hover:-translate-y-1 h-full">
+                  <CardHeader className="h-full flex flex-col">
                     <Icon name={item.icon} size={40} className="text-primary mb-2" />
-                    <CardTitle className="text-lg">{item.title}</CardTitle>
-                    <CardDescription>{item.desc}</CardDescription>
+                    <CardTitle className="text-lg mb-2">{item.title}</CardTitle>
+                    <CardDescription className="flex-grow">{item.desc}</CardDescription>
                   </CardHeader>
                 </Card>
               </ScrollAnimation>
