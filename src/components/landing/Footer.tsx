@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-          <p>© 2024 Чистый Стандарт. Все права защищены.</p>
+          <p>© 2025 Чистый Стандарт. Все права защищены.</p>
           <p className="mt-2">
             <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
           </p>
