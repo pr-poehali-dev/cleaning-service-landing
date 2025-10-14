@@ -29,10 +29,33 @@ const Index = () => {
   });
   const [calculatedPrice, setCalculatedPrice] = useState<number | null>(null);
   const [customServices, setCustomServices] = useState("");
+  const [subscription, setSubscription] = useState("");
 
   const calculatePrice = () => {
     const pricePerMeter = cleaningType === 'regular' ? 160 : cleaningType === 'general' ? 200 : 180;
     let basePrice = area[0] * pricePerMeter;
+
+    const getSubscriptionDiscount = () => {
+      if (cleaningType !== 'regular' || !subscription) return 0;
+      
+      const [frequency, duration] = subscription.split('-');
+      let discount = 0;
+      
+      if (frequency === '1week') discount = 5;
+      else if (frequency === '2week') discount = 10;
+      else if (frequency === '3week') discount = 15;
+      
+      if (duration === '2m') discount += 3;
+      else if (duration === '3m') discount += 5;
+      else if (duration === '6m') discount += 10;
+      else if (duration === '12m') discount += 15;
+      
+      return Math.min(discount, 30);
+    };
+    
+    const discountPercent = getSubscriptionDiscount();
+    const discount = Math.round(basePrice * discountPercent / 100);
+    basePrice = basePrice - discount;
 
     const extrasPrices: Record<string, number> = {
       windows: 1500,
@@ -86,6 +109,8 @@ const Index = () => {
         calculatePrice={calculatePrice}
         customServices={customServices}
         setCustomServices={setCustomServices}
+        subscription={subscription}
+        setSubscription={setSubscription}
       />
       <BeforeAfterSection />
       <OrderFormSection 
