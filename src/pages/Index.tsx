@@ -75,7 +75,12 @@ const Index = () => {
         setCustomServices={setCustomServices}
       />
       <BeforeAfterSection />
-      <OrderFormSection calculatedPrice={calculatedPrice} handleSubmit={handleSubmit} />
+      <OrderFormSection 
+        calculatedPrice={calculatedPrice} 
+        handleSubmit={handleSubmit}
+        customServices={customServices}
+        selectedExtras={extras}
+      />
       <TestimonialsSection />
       <FAQSection />
       <Footer />
