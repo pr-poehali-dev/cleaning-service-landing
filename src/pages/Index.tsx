@@ -30,15 +30,24 @@ const Index = () => {
   const [customServices, setCustomServices] = useState("");
 
   const calculatePrice = () => {
-    let basePrice = 0;
-    if (roomType === "apartment") basePrice = area[0] * 50;
-    if (roomType === "house") basePrice = area[0] * 60;
-    if (roomType === "office") basePrice = area[0] * 45;
+    let basePrice = area[0] * 180;
 
-    const extrasCount = Object.values(extras).filter(Boolean).length;
-    if (extrasCount > 0) {
-      basePrice += extrasCount * 500;
-    }
+    const extrasPrices: Record<string, number> = {
+      windows: 1500,
+      balcony: 800,
+      carpet: 2500,
+      furniture: 3000,
+      appliances: 1000,
+      chandelier: 1200,
+      afterRepair: 5000,
+      disinfection: 2000,
+    };
+
+    Object.entries(extras).forEach(([key, value]) => {
+      if (value) {
+        basePrice += extrasPrices[key] || 0;
+      }
+    });
 
     setCalculatedPrice(basePrice);
     

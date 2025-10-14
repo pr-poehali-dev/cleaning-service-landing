@@ -195,12 +195,17 @@ const CalculatorSection = ({
                 <div className="bg-primary/10 p-6 rounded-lg border-2 border-primary animate-fade-in">
                   <p className="text-sm text-gray-600 mb-1">Примерная стоимость</p>
                   <p className="text-4xl font-bold text-primary">{calculatedPrice}₽</p>
+                  <p className="text-xs text-gray-500 mt-2">* Финальная стоимость может измениться после осмотра объекта</p>
                 </div>
               )}
 
               <Button onClick={calculatePrice} size="lg" className="w-full text-lg" disabled={!roomType}>
                 Рассчитать стоимость
               </Button>
+              
+              <p className="text-xs text-center text-gray-500">
+                * Расчёт 180₽/м². Финальная стоимость может измениться после осмотра
+              </p>
             </CardContent>
           </Card>
         </ScrollAnimation>
