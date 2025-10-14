@@ -37,6 +37,7 @@ interface CalculatorSectionProps {
   calculatePrice: () => void;
   customServices: string;
   setCustomServices: (value: string) => void;
+  area: number[];
 }
 
 const CalculatorSection = ({
@@ -51,6 +52,35 @@ const CalculatorSection = ({
   customServices,
   setCustomServices,
 }: CalculatorSectionProps) => {
+  const extrasPrices: Record<string, number> = {
+    windows: 1500,
+    balcony: 800,
+    carpet: 2500,
+    furniture: 3000,
+    appliances: 1000,
+    chandelier: 1200,
+    afterRepair: 5000,
+    disinfection: 2000,
+  };
+
+  const extrasLabels: Record<string, string> = {
+    windows: 'Мытье окон',
+    balcony: 'Уборка балкона',
+    carpet: 'Химчистка ковра',
+    furniture: 'Химчистка мягкой мебели',
+    appliances: 'Мытье бытовой техники',
+    chandelier: 'Мытье люстры',
+    afterRepair: 'Уборка после ремонта',
+    disinfection: 'Дезинфекция помещения',
+  };
+
+  const basePrice = area[0] * 180;
+  const selectedExtras = Object.entries(extras)
+    .filter(([_, value]) => value)
+    .map(([key, _]) => ({
+      label: extrasLabels[key],
+      price: extrasPrices[key],
+    }));
   return (
     <section id="calculator" className="py-20 px-4 bg-white">
       <div className="container mx-auto max-w-3xl">
@@ -192,10 +222,34 @@ const CalculatorSection = ({
               </div>
 
               {calculatedPrice !== null && (
-                <div className="bg-primary/10 p-6 rounded-lg border-2 border-primary animate-fade-in">
-                  <p className="text-sm text-gray-600 mb-1">Примерная стоимость</p>
-                  <p className="text-4xl font-bold text-primary">{calculatedPrice}₽</p>
-                  <p className="text-xs text-gray-500 mt-2">* Финальная стоимость может измениться после осмотра объекта</p>
+                <div className="bg-primary/10 p-6 rounded-lg border-2 border-primary animate-fade-in space-y-4">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-3 font-semibold">Детализация расчёта:</p>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-700">Базовая уборка ({area[0]} м² × 180₽)</span>
+                        <span className="font-semibold">{basePrice}₽</span>
+                      </div>
+                      {selectedExtras.length > 0 && (
+                        <div className="pt-2 border-t border-primary/20">
+                          <p className="text-gray-600 mb-2 font-medium">Дополнительные услуги:</p>
+                          {selectedExtras.map((extra, index) => (
+                            <div key={index} className="flex justify-between items-center ml-4">
+                              <span className="text-gray-700">{extra.label}</span>
+                              <span className="font-semibold">+{extra.price}₽</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="pt-3 border-t-2 border-primary/30">
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-semibold text-gray-800">Итого:</span>
+                      <span className="text-4xl font-bold text-primary">{calculatedPrice}₽</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 pt-2 border-t border-primary/20">* Финальная стоимость может измениться после осмотра объекта</p>
                 </div>
               )}
 
