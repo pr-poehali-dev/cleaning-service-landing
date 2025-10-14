@@ -36,7 +36,7 @@ const Index = () => {
     let basePrice = area[0] * pricePerMeter;
 
     const getSubscriptionDiscount = () => {
-      if (cleaningType !== 'regular' || !subscription) return 0;
+      if (cleaningType !== 'regular' || !subscription || subscription === 'none') return 0;
       
       const [frequency, duration] = subscription.split('-');
       let discount = 0;

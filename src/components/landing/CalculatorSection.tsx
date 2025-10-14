@@ -85,7 +85,7 @@ const CalculatorSection = ({
   const basePrice = area[0] * pricePerMeter;
   
   const getSubscriptionDiscount = () => {
-    if (cleaningType !== 'regular' || !subscription) return 0;
+    if (cleaningType !== 'regular' || !subscription || subscription === 'none') return 0;
     
     const [frequency, duration] = subscription.split('-');
     let discount = 0;
@@ -107,7 +107,7 @@ const CalculatorSection = ({
   const basePriceWithDiscount = basePrice - discount;
   
   const getCleaningsPerMonth = () => {
-    if (!subscription) return 0;
+    if (!subscription || subscription === 'none') return 0;
     const frequency = subscription.split('-')[0];
     if (frequency === '1week') return 4;
     if (frequency === '2week') return 8;
@@ -172,7 +172,7 @@ const CalculatorSection = ({
                       <SelectValue placeholder="Разовая уборка (без скидки)" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Разовая уборка</SelectItem>
+                      <SelectItem value="none">Разовая уборка</SelectItem>
                       <SelectItem value="1week-1m">1 раз/неделю — 1 месяц (скидка 5%)</SelectItem>
                       <SelectItem value="1week-2m">1 раз/неделю — 2 месяца (скидка 8%)</SelectItem>
                       <SelectItem value="1week-3m">1 раз/неделю — 3 месяца (скидка 10%)</SelectItem>
