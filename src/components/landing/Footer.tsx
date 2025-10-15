@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-12 px-4">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Icon name="Sparkles" size={28} className="text-primary" />
@@ -27,20 +27,6 @@ const Footer = () => {
               <p>Работаем 24/7</p>
               <p>Без выходных и праздников</p>
               <p className="text-primary font-semibold mt-3">Выезд в любое время!</p>
-            </div>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Мы в соцсетях</h3>
-            <div className="flex gap-4">
-              <Button variant="outline" size="icon" className="rounded-full bg-white/10 border-white/20 hover:bg-white/20">
-                <Icon name="MessageCircle" size={20} />
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full bg-white/10 border-white/20 hover:bg-white/20">
-                <Icon name="Instagram" size={20} />
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full bg-white/10 border-white/20 hover:bg-white/20">
-                <Icon name="Send" size={20} />
-              </Button>
             </div>
           </div>
         </div>
