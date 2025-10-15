@@ -1,5 +1,12 @@
+User-agent: *
+Allow: /
+
 User-agent: Googlebot
 Allow: /
+
+User-agent: Yandex
+Allow: /
+Host: cleaning-service-landing.poehali.dev
 
 User-agent: Bingbot
 Allow: /
@@ -10,5 +17,4 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+Sitemap: https://cleaning-service-landing.poehali.dev/sitemap.xml
