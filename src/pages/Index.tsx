@@ -9,6 +9,7 @@ import SubscriptionSection from "@/components/landing/SubscriptionSection";
 import OrderFormSection from "@/components/landing/OrderFormSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import FAQSection from "@/components/landing/FAQSection";
+import SEOTextSection from "@/components/landing/SEOTextSection";
 import Footer from "@/components/landing/Footer";
 import MessengerWidgets from "@/components/landing/MessengerWidgets";
 
@@ -96,6 +97,7 @@ const Index = () => {
       />
       <TestimonialsSection />
       <FAQSection />
+      <SEOTextSection />
       <Footer />
       <MessengerWidgets />
     </div>

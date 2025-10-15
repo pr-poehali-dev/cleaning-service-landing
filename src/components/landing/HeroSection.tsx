@@ -10,10 +10,10 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 animate-fade-in">
             <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900">
-              Идеальная чистота без ваших усилий
+              Клининг в Екатеринбурге от 160₽/м²
             </h1>
             <p className="text-xl text-gray-600">
-              Профессиональный клининг для вашего дома и офиса. Вернем вам время для самого важного.
+              Профессиональная уборка квартир и офисов в Екатеринбурге. Работаем 24/7. Гарантия качества. Абонементы со скидкой до 30%.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button size="lg" className="text-lg px-8 py-6" onClick={() => document.getElementById("calculator")?.scrollIntoView({ behavior: "smooth" })}>

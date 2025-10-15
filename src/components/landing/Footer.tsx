@@ -11,7 +11,7 @@ const Footer = () => {
               <Icon name="Sparkles" size={28} className="text-primary" />
               <span className="text-xl font-bold">Чистый Стандарт</span>
             </div>
-            <p className="text-gray-400 text-sm">Профессиональный клининг для вашего дома и офиса</p>
+            <p className="text-gray-400 text-sm">Профессиональная уборка квартир и офисов в Екатеринбурге с 2020 года</p>
           </div>
           <div>
             <h3 className="font-semibold mb-4">Контакты</h3>
@@ -24,9 +24,9 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">График работы</h3>
             <div className="space-y-2 text-sm text-gray-400">
-              <p>Пн-Пт: 08:00 - 20:00</p>
-              <p>Сб-Вс: 09:00 - 18:00</p>
-              <p className="text-primary font-semibold mt-3">Звоните прямо сейчас!</p>
+              <p>Работаем 24/7</p>
+              <p>Без выходных и праздников</p>
+              <p className="text-primary font-semibold mt-3">Выезд в любое время!</p>
             </div>
           </div>
           <div>
