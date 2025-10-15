@@ -6,7 +6,6 @@ import ServicesSection from "@/components/landing/ServicesSection";
 import HowWeWorkSection from "@/components/landing/HowWeWorkSection";
 import CalculatorSection from "@/components/landing/CalculatorSection";
 import SubscriptionSection from "@/components/landing/SubscriptionSection";
-import BeforeAfterSection from "@/components/landing/BeforeAfterSection";
 import OrderFormSection from "@/components/landing/OrderFormSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import FAQSection from "@/components/landing/FAQSection";
@@ -89,7 +88,6 @@ const Index = () => {
         setCustomServices={setCustomServices}
       />
       <SubscriptionSection />
-      <BeforeAfterSection />
       <OrderFormSection 
         calculatedPrice={calculatedPrice} 
         handleSubmit={handleSubmit}
