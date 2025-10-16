@@ -69,6 +69,7 @@ const Index = () => {
       phone: formData.get('phone') as string,
       email: formData.get('email') as string,
       comment: formData.get('comment') as string,
+      marketingConsent: formData.get('marketing') === 'on',
       calculatedPrice: calculatedPrice,
       selectedExtras: extras,
       customServices: customServices,

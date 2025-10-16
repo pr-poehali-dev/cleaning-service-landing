@@ -92,11 +92,19 @@ const OrderFormSection = ({ calculatedPrice, handleSubmit, customServices, selec
                   )}
                 </div>
               )}
-              <div className="flex items-start space-x-2">
-                <Checkbox id="terms" required />
-                <label htmlFor="terms" className="text-sm text-gray-600 cursor-pointer">
-                  Я согласен на обработку персональных данных и принимаю политику конфиденциальности
-                </label>
+              <div className="space-y-3">
+                <div className="flex items-start space-x-2">
+                  <Checkbox id="terms" required />
+                  <label htmlFor="terms" className="text-sm text-gray-600 cursor-pointer">
+                    Я согласен на обработку персональных данных и принимаю политику конфиденциальности *
+                  </label>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <Checkbox id="marketing" name="marketing" />
+                  <label htmlFor="marketing" className="text-sm text-gray-600 cursor-pointer">
+                    Я согласен на получение рекламной рассылки и специальных предложений
+                  </label>
+                </div>
               </div>
               <Button type="submit" size="lg" className="w-full text-lg">
                 Заказать уборку

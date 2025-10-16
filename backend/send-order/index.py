@@ -43,6 +43,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     phone = body_data.get('phone', '')
     email = body_data.get('email', '')
     comment = body_data.get('comment', '')
+    marketing_consent = body_data.get('marketingConsent', False)
     calculated_price = body_data.get('calculatedPrice')
     custom_services = body_data.get('customServices', '')
     selected_extras = body_data.get('selectedExtras', {})
@@ -147,6 +148,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 <tr>
                     <td class="label">✨ Доп. услуги:</td>
                     <td class="value">{extras_html}</td>
+                </tr>
+                <tr>
+                    <td class="label">📬 Согласие на рассылку:</td>
+                    <td class="value">{'✅ Да' if marketing_consent else '❌ Нет'}</td>
                 </tr>
                 {f'<tr><td class="label">📝 Особые пожелания:</td><td class="value">{custom_services}</td></tr>' if custom_services else ''}
                 {f'<tr><td class="label">💬 Комментарий:</td><td class="value">{comment}</td></tr>' if comment else ''}
