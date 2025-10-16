@@ -49,8 +49,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     custom_services = body_data.get('customServices', '')
     selected_extras = body_data.get('selectedExtras', {})
     
-    smtp_user = os.environ.get('SMTP_USER')
-    smtp_password = os.environ.get('SMTP_PASSWORD')
+    smtp_user = os.environ.get('SMTP_USER', '').strip()
+    smtp_password = os.environ.get('SMTP_PASSWORD', '').strip()
     
     if not smtp_user or not smtp_password:
         return {
@@ -150,21 +150,60 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     html_part = MIMEText(html_body, 'html', 'utf-8')
     msg.attach(html_part)
     
-    smtp_server = 'smtp.gmail.com' if 'gmail' in smtp_user else 'smtp.yandex.ru'
-    smtp_port = 587
+    if 'gmail' in smtp_user.lower():
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+    elif 'yandex' in smtp_user.lower() or 'ya.ru' in smtp_user.lower():
+        smtp_server = 'smtp.yandex.ru'
+        smtp_port = 587
+    elif 'mail.ru' in smtp_user.lower():
+        smtp_server = 'smtp.mail.ru'
+        smtp_port = 587
+    else:
+        smtp_server = 'smtp.yandex.ru'
+        smtp_port = 587
     
-    server = smtplib.SMTP(smtp_server, smtp_port)
-    server.starttls()
-    server.login(smtp_user, smtp_password)
-    server.send_message(msg)
-    server.quit()
-    
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        'body': json.dumps({'success': True, 'message': 'Email sent successfully'}),
-        'isBase64Encoded': False
-    }
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port, timeout=10)
+        server.set_debuglevel(0)
+        server.starttls()
+        server.login(smtp_user, smtp_password)
+        server.send_message(msg)
+        server.quit()
+        
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'success': True, 'message': 'Email sent successfully'}),
+            'isBase64Encoded': False
+        }
+    except smtplib.SMTPAuthenticationError as e:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'error': 'Authentication failed',
+                'message': 'Неверный логин или пароль SMTP. Проверьте настройки секретов.',
+                'details': str(e)
+            }),
+            'isBase64Encoded': False
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({
+                'error': 'Failed to send email',
+                'message': str(e)
+            }),
+            'isBase64Encoded': False
+        }
