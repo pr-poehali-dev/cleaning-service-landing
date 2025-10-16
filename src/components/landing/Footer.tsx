@@ -3,9 +3,9 @@ import Icon from "@/components/ui/icon";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12 px-4">
-      <div className="container mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+    <footer className="bg-gray-900 text-white py-8 sm:py-12 px-4">
+      <div className="container mx-auto max-w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Icon name="Sparkles" size={28} className="text-primary" />

@@ -87,11 +87,11 @@ const CalculatorSection = ({
       price: extrasPrices[key],
     }));
   return (
-    <section id="calculator" className="py-20 px-4 bg-white">
+    <section id="calculator" className="py-12 sm:py-20 px-4 bg-white">
       <div className="container mx-auto max-w-3xl">
         <ScrollAnimation animation="fade-in">
-          <h2 className="text-4xl font-bold text-center mb-4">Калькулятор стоимости</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Рассчитайте примерную стоимость уборки</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-3 sm:mb-4">Калькулятор стоимости</h2>
+          <p className="text-center text-gray-600 mb-8 sm:mb-12 text-base sm:text-lg">Рассчитайте примерную стоимость уборки</p>
         </ScrollAnimation>
         <ScrollAnimation animation="scale-in">
           <Card className="shadow-xl border-2">
@@ -143,7 +143,7 @@ const CalculatorSection = ({
 
               <div className="space-y-3">
                 <Label>Дополнительные услуги</Label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-3">
                   <div className="flex items-center space-x-2">
                     <Checkbox
                       id="windows"
@@ -240,7 +240,7 @@ const CalculatorSection = ({
               </div>
 
               {calculatedPrice !== null && (
-                <div className="bg-primary/10 p-6 rounded-lg border-2 border-primary animate-fade-in space-y-4">
+                <div className="bg-primary/10 p-4 sm:p-6 rounded-lg border-2 border-primary animate-fade-in space-y-4">
                   <div>
                     <p className="text-sm text-gray-600 mb-3 font-semibold">Детализация расчёта:</p>
                     <div className="space-y-2 text-sm">

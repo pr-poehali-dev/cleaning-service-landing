@@ -98,11 +98,11 @@ const SubscriptionSection = () => {
   };
 
   return (
-    <section id="subscription" className="py-20 px-4 bg-gradient-to-b from-white to-primary/5">
+    <section id="subscription" className="py-12 sm:py-20 px-4 bg-gradient-to-b from-white to-primary/5">
       <div className="container mx-auto max-w-3xl">
         <ScrollAnimation animation="fade-in">
-          <h2 className="text-4xl font-bold text-center mb-4">Абонементы на регулярную уборку</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Выгодные условия при регулярном обслуживании со скидками до 30%</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-3 sm:mb-4">Абонементы на регулярную уборку</h2>
+          <p className="text-center text-gray-600 mb-8 sm:mb-12 text-base sm:text-lg">Выгодные условия при регулярном обслуживании со скидками до 30%</p>
         </ScrollAnimation>
         <ScrollAnimation animation="scale-in">
           <Card className="shadow-xl border-2">
@@ -160,7 +160,7 @@ const SubscriptionSection = () => {
               </div>
 
               {calculatedPrice !== null && (
-                <div className="bg-primary/10 p-6 rounded-lg border-2 border-primary animate-fade-in space-y-4">
+                <div className="bg-primary/10 p-4 sm:p-6 rounded-lg border-2 border-primary animate-fade-in space-y-4">
                   <div>
                     <p className="text-sm text-gray-600 mb-3 font-semibold">Детализация абонемента:</p>
                     <div className="space-y-2 text-sm">
