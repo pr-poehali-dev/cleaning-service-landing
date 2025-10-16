@@ -175,7 +175,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     elif 'yandex' in smtp_user.lower() or 'ya.ru' in smtp_user.lower():
         smtp_server = 'smtp.yandex.ru'
         smtp_port = 587
-    elif 'mail.ru' in smtp_user.lower():
+    elif 'mail.ru' in smtp_user.lower() or 'inbox.ru' in smtp_user.lower() or 'list.ru' in smtp_user.lower() or 'bk.ru' in smtp_user.lower():
         smtp_server = 'smtp.mail.ru'
         smtp_port = 587
     else:

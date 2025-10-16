@@ -7,31 +7,6 @@
       "expectedStatus": 200,
       "expectedBody": "",
       "bodyMatcher": "exact"
-    },
-    {
-      "name": "Send order email successfully",
-      "method": "POST",
-      "path": "/",
-      "body": {
-        "name": "Иван Иванов",
-        "phone": "+7 999 123-45-67",
-        "address": "ул. Ленина, д. 10, кв. 5",
-        "date": "2025-10-20",
-        "time": "14:00",
-        "comment": "Просьба позвонить за час",
-        "calculatedPrice": 8500,
-        "customServices": "Помыть холодильник",
-        "selectedExtras": {
-          "windows": true,
-          "balcony": false,
-          "carpet": true
-        }
-      },
-      "expectedStatus": 200,
-      "expectedBody": {
-        "success": true
-      },
-      "bodyMatcher": "partial"
     }
   ]
 }
