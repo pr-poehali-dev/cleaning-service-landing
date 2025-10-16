@@ -41,13 +41,14 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     name = body_data.get('name', '')
     phone = body_data.get('phone', '')
-    address = body_data.get('address', '')
-    date = body_data.get('date', '')
-    time = body_data.get('time', '')
+    email = body_data.get('email', '')
     comment = body_data.get('comment', '')
     calculated_price = body_data.get('calculatedPrice')
     custom_services = body_data.get('customServices', '')
     selected_extras = body_data.get('selectedExtras', {})
+    area = body_data.get('area', '')
+    room_type = body_data.get('roomType', '')
+    cleaning_type = body_data.get('cleaningType', '')
     
     smtp_user = os.environ.get('SMTP_USER', '').strip()
     smtp_password = os.environ.get('SMTP_PASSWORD', '').strip()
@@ -84,6 +85,23 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     else:
         extras_html = 'Не выбраны'
     
+    room_type_labels = {
+        '1': '1-комнатная',
+        '2': '2-комнатная',
+        '3': '3-комнатная',
+        '4': '4-комнатная',
+        '5': '5-комнатная'
+    }
+    
+    cleaning_type_labels = {
+        'regular': 'Поддерживающая',
+        'general': 'Генеральная',
+        'afterRepair': 'После ремонта'
+    }
+    
+    room_type_str = room_type_labels.get(room_type, room_type) if room_type else 'Не указан'
+    cleaning_type_str = cleaning_type_labels.get(cleaning_type, cleaning_type) if cleaning_type else 'Не указан'
+    
     html_body = f'''
     <!DOCTYPE html>
     <html>
@@ -113,17 +131,18 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     <td class="label">📱 Телефон:</td>
                     <td class="value">{phone or 'Не указан'}</td>
                 </tr>
+                {f'<tr><td class="label">📧 E-mail:</td><td class="value">{email}</td></tr>' if email else ''}
                 <tr>
-                    <td class="label">📍 Адрес:</td>
-                    <td class="value">{address or 'Не указан'}</td>
+                    <td class="label">🏠 Тип помещения:</td>
+                    <td class="value">{room_type_str}</td>
                 </tr>
                 <tr>
-                    <td class="label">📅 Дата:</td>
-                    <td class="value">{date or 'Не указана'}</td>
+                    <td class="label">📐 Площадь:</td>
+                    <td class="value">{area} м²</td>
                 </tr>
                 <tr>
-                    <td class="label">🕐 Время:</td>
-                    <td class="value">{time or 'Не указано'}</td>
+                    <td class="label">🧹 Тип уборки:</td>
+                    <td class="value">{cleaning_type_str}</td>
                 </tr>
                 <tr>
                     <td class="label">✨ Доп. услуги:</td>

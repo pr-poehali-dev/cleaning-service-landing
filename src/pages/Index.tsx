@@ -60,12 +60,54 @@ const Index = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Заявка отправлена!",
-      description: "Мы свяжемся с вами в ближайшее время.",
-    });
+    
+    const formData = new FormData(e.target as HTMLFormElement);
+    const data = {
+      name: formData.get('name') as string,
+      phone: formData.get('phone') as string,
+      email: formData.get('email') as string,
+      comment: formData.get('comment') as string,
+      calculatedPrice: calculatedPrice,
+      selectedExtras: extras,
+      customServices: customServices,
+      area: area[0],
+      roomType: roomType,
+      cleaningType: cleaningType
+    };
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/a3379f3c-450e-4abb-b46d-02d76d0c1f80', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Заявка отправлена!",
+          description: "Мы свяжемся с вами в ближайшее время.",
+        });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast({
+          title: "Ошибка отправки",
+          description: result.message || "Попробуйте позже или позвоните нам.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Ошибка отправки",
+        description: "Проверьте подключение к интернету.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

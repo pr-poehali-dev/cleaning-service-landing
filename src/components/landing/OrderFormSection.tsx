@@ -49,20 +49,21 @@ const OrderFormSection = ({ calculatedPrice, handleSubmit, customServices, selec
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="name">Ваше имя *</Label>
-                <Input id="name" placeholder="Иван Иванов" required />
+                <Input id="name" name="name" placeholder="Иван Иванов" required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Телефон *</Label>
-                <Input id="phone" type="tel" placeholder="+7 (999) 123-45-67" required />
+                <Input id="phone" name="phone" type="tel" placeholder="+7 (999) 123-45-67" required />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">E-mail</Label>
-                <Input id="email" type="email" placeholder="example@mail.ru" />
+                <Input id="email" name="email" type="email" placeholder="example@mail.ru" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="comment">Комментарий</Label>
                 <Textarea
                   id="comment"
+                  name="comment"
                   placeholder="Укажите адрес, тип уборки и удобное время"
                   rows={4}
                 />
